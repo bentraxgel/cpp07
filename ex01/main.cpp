@@ -17,4 +17,8 @@ std::cout << "\n\n* * * float array * * *\n";
 std::cout << "\n\n* * * string array * * *\n";
 	std::string sarr[5] = {"hello", "my", "name", "is", "seok"};
 	iter(sarr, sizeof(sarr) / sizeof(*sarr), print<std::string>);
+
+std::cout << "\n\n* * * const char* array * * *\n";
+	const char* arr[5] = {"hello", "my", "name", "is", "seok"};
+	iter(arr, sizeof(arr) / sizeof(*arr), print<const char*>);
 }
