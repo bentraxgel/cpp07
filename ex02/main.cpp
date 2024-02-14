@@ -1,9 +1,12 @@
 #include <iostream>
 #include "Array.hpp"
 
-#define MAX_VAL 750
+void leak() {system ("leaks -q ex02");}
+
+// #define MAX_VAL 750
 int main(int, char**)
 {
+    // atexit(leak);
     Array<int> numbers(MAX_VAL);
     int* mirror = new int[MAX_VAL];
     srand(time(NULL));
@@ -48,6 +51,6 @@ int main(int, char**)
     {
         numbers[i] = rand();
     }
-    delete [] mirror;//
+    delete [] mirror;
     return 0;
 }
