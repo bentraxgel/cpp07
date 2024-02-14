@@ -1,6 +1,5 @@
 #ifndef ARRAY_HPP
 #define ARRAY_HPP
-#define MAX_VAL 750
 
 template <typename T>
 class Array
@@ -32,7 +31,7 @@ public:
 	unsigned int size() const { return _size; };
 	
 	T&	operator [] (int idx) const {
-		if (idx < 0 || idx >= MAX_VAL)
+		if (idx < 0 || static_cast<unsigned int>(idx) >= _size)
 			throw InvalidIdex();
 		return _array[idx];
 	};
