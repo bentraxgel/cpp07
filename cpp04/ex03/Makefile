@@ -1,7 +1,9 @@
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -Wno-shadow -std=c++98
 NAME = Interface
-SRCS = main.cpp 
+SRCS = main.cpp AMateria.cpp Character.cpp\
+	   Ice.cpp Cure.cpp MateriaSource.cpp 
+
 OBJS = $(SRCS:.cpp=.o)
 
 TOTAL = $(words $(SRCS))

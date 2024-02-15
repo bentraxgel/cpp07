@@ -11,6 +11,7 @@ AMateria& AMateria::operator= (const AMateria& copy) {
 		_type = copy._type;
 	return *this;
 }
+AMateria::~AMateria() {};
 
 std::string const & AMateria::getType() const {
 	return _type;

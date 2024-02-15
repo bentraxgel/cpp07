@@ -8,6 +8,7 @@ class Character : public ICharacter
 {
 public:
 	Character(std::string);
+	/* deep copy */
 	Character(const Character&);
 	Character& operator= (const Character&);
 	~Character();
@@ -20,7 +21,7 @@ public:
 private:
 	std::string	_name;
 	static const unsigned int	_inventory_size = 4;
-	AMateria*	_slot[_inventory_size];
+	AMateria*	_inven[_inventory_size];
 
 	Character();
 };

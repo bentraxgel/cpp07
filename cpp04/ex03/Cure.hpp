@@ -3,13 +3,13 @@
 #include <iostream>
 #include "AMateria.hpp"
 
-class Ice : public AMateria
+class Cure : public AMateria
 {
 public:
-	Ice();
-	Ice(const Ice&);
-	Ice& operator=(const Ice&);
-	~Ice();
+	Cure();
+	Cure(const Cure&);
+	Cure& operator=(const Cure&);
+	~Cure();
 	AMateria* clone() const;
 	void use(ICharacter& target);
 };
