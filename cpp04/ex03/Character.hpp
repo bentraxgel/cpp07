@@ -1,8 +1,8 @@
-#ifndef CHARACTER_HPP
-#define CHARACTER_HPP
+#pragma once
 
 #include <iostream>
 #include "ICharacter.hpp"
+class AMateria;
 
 class Character : public ICharacter
 {
@@ -12,22 +12,15 @@ public:
 	Character& operator= (const Character&);
 	~Character();
 
+	std::string const & getName() const;
+	void equip(AMateria* m);
+	void unequip(int idx);
+	void use(int idx, ICharacter& target);
 
 private:
 	std::string	_name;
 	static const unsigned int	_inventory_size = 4;
 	AMateria*	_slot[_inventory_size];
+
 	Character();
 };
-
-/*
-[ ] 궁금증: '_inventory_size'
-	class에 저장하는게 나을가 매크로 선언하는게 나을까?
-virtual std::string const & getName() const = 0;
-virtual void equip(AMateria* m) = 0;
-virtual void unequip(int idx) = 0;
-virtual void use(int idx, ICharacter& target) = 0;
-
-*/
-
-#endif
