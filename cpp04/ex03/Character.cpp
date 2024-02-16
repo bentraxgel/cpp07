@@ -48,5 +48,6 @@ void Character::use(int idx, ICharacter& target) {
 		std::cerr << "Error: Invalid index!\n";
 		return ;
 	}
-	_inven[idx]->use(target);
+	if (_inven[idx])
+		_inven[idx]->use(target);
 }

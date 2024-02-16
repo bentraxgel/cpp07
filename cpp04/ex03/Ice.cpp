@@ -17,4 +17,3 @@ AMateria* Ice::clone() const {
 void	Ice::use(ICharacter& target) {
 	std::cout << "Ice: \"* shoots an ice bolt at " << target.getName() << " *\"\n";
 }
-// 		std::cout << "Cure: \"* heals " << target.getName() << "’s wounds *\"\n";
