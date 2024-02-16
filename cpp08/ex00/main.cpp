@@ -4,29 +4,24 @@
 
 int	main() {
 std::vector<int> vec;
-std::vector<int> v2;
+std::vector<int>::iterator iter;
 
-vec.push_back(22);
-v2.push_back(202);
+for (int i = 0; i < 5; i++)
+	vec.push_back(i + 10);
+std::cout << "vec size: " << vec.size() << "\n";
 
-
-std::vector<int>::iterator o = vec.begin();
-std::cout << "begin: " << *o << "\n";
-o = vec.end();
-std::cout << "end: " << *o << "\n";
-// std::cout << "size: " << sizeof(o);
-std::cout << "size: " << sizeof(*o);
-
-std::cout << "\n* * *  * easy\n\n";
 try
 {
-o = easyfind(v2, 'g');
-std::cout << "try: " << *o;
-	
+std::cout << "\n=== find할 수 있는 값. ===\n";
+iter = easyfind(vec, 11);
+std::cout << "iter: " << *iter << "\n";
+std::cout << "\n=== find할 수 있는 값. ===\n";
+iter = easyfind(vec, 100);
+std::cout << "iter: " << *iter << "\n";
 }
 catch(const std::exception& e)
 {
-	std::cerr << e.what() << " Not Found" << '\n';
+	std::cerr << "🚫 Not Found" << '\n';
 }
 
 
