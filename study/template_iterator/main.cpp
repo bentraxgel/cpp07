@@ -1,5 +1,5 @@
-#include <vector>
 #include <iostream>
+#include <vector>
 #include "easyfind.hpp"
 
 int	main() {
@@ -8,7 +8,6 @@ std::vector<int> v2;
 
 vec.push_back(22);
 v2.push_back(202);
-
 
 std::vector<int>::iterator o = vec.begin();
 std::cout << "begin: " << *o << "\n";
