@@ -51,3 +51,25 @@ int main(int, char**)
     delete [] mirror;
     return 0;
 }
+// int	main() {
+// 	Array<int> a(5);
+// 	for (int i = 0; i < 5; i++) {
+// 		std::cout << "before: " << a[i] << "\n";
+// 		a[i] = i + 10;
+// 		std::cout << "after: " << a[i] << "\n";
+// 	}
+
+// std::cout << "\n\n* * * * * * *\n";
+// 	Array<int> b(a);
+// 	for (int i = 0; i < 5; i++) {
+// 		b[i] = 100;
+// 		std::cout << a[i] << " : " << b[i] <<"\n";
+// 	}
+
+// std::cout << "\n\n* * * * * * *\n";
+// a = b;
+// b[0] = 0;
+// std::cout << "b[0]: " << b[0] << "\n";
+// for (int i = 0; i < 5; i++)
+// 	std::cout << a[i] << " ";
+// }
