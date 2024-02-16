@@ -1,3 +1,7 @@
+#pragma once
+#ifndef MATERIASOUCE_HPP
+#define MATERIASOUCE_HPP
+
 #include "IMateriaSource.hpp"
 
 class MateriaSource : public IMateriaSource
@@ -13,3 +17,5 @@ private:
 	static const unsigned int	_slot_size = 4;
 	AMateria*	_slot[_slot_size];
 };
+
+#endif
