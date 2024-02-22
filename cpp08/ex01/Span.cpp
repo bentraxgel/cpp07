@@ -2,7 +2,7 @@
 #include <algorithm>
 #include <cstdlib>
 
-Span::Span(unsigned int n)\
+Span::Span(unsigned int n)
  : _capacity(n)
 {}
 Span::Span(const Span& rhs)
