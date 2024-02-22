@@ -34,8 +34,8 @@ std::cout << "\n* * * * * * * list * * * * * * *\n";
  for (int i = 0; i < 5; i++)
 	lst.push_back(i + 10);
  
-	lst.push_front(112);
-	lst.push_back(119);
+lst.push_front(112);
+lst.push_back(119);
 std::cout << "lst size: " << lst.size() << "\n";
 std::list<int>::iterator it;
 for (it = lst.begin(); it != lst.end(); it++)
@@ -49,7 +49,7 @@ std::cout << "\n=== find할 수 없는 값. ===\n";
 it = easyfind(lst, 100);
 std::cout << "list Found iter: " << *it << "\n";
 
-} catch (std::exception e)
+} catch (std::exception& e)
 {
 	std::cout << "🚫 list Not Found\n";
 }
