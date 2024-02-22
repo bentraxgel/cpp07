@@ -18,9 +18,10 @@ public:
 	Span& operator=(const Span& rhs);
 	~Span();
 	int operator[](const unsigned int idx);
+	void	vectorReserve(int size);
 
 	void	addNumber(int n);
-	void	addManyNumber(unsigned int n);
+	void	addManyNumber(int* arr, unsigned int n);
 	int		shortestSpan();
 	int		longestSpan();
 
@@ -29,7 +30,7 @@ public:
 		public:
 			const char* what() const throw();
 	};
-	void	getcapacity()
+	void	getCapacity()
 	{
 		std::cout << "_capacity: " << _capacity << std::endl;
 	}

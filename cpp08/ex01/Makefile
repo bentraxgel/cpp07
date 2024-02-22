@@ -1,6 +1,7 @@
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g3
-NAME = ex02
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 
+# -fsanitize=address -g3
+NAME = ex01
 SRCS = main.cpp Span.cpp
 OBJS = $(SRCS:.cpp=.o)
 
@@ -21,7 +22,7 @@ endef
 
 $(NAME) : $(OBJS)
 	@$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
-	@echo '\n'$(CYAN) START 👩‍🎓 $(ITALIC)ex02! $(RESET) '\n'
+	@echo '\n'$(CYAN) START 👩‍🎓 $(ITALIC)ex01! $(RESET) '\n'
 
 all : $(NAME)
 clean :

@@ -19,11 +19,17 @@ Span& Span::operator=(const Span& rhs)
 	return *this;
 }
 Span::~Span() {}
+
 int Span::operator[](const unsigned int idx)
 {
 	if (idx >= _capacity)
 		throw invalid();
 	return _vector[idx];
+}
+void	Span::vectorReserve(int size)
+{
+	_capacity = size;
+	_vector.reserve(size);
 }
 
 void	Span::addNumber(int n)
@@ -32,22 +38,12 @@ void	Span::addNumber(int n)
 		throw invalid();
 	_vector.push_back(n);
 }
-
-void	Span::addManyNumber(unsigned int n)
+void	Span::addManyNumber(int* arr, unsigned int size)
 {
-	unsigned int inputSize = _vector.size() + n;
-	std::cout << "size: " << inputSize << std::endl;
-	if (inputSize >= _capacity) {
-
-		throw invalid();
-	}
-	std::cout << "TEST";
-	std::srand(time(NULL));
-	for (unsigned int i = _vector.size(); i < inputSize; i++) {
-		std::cout << "vector[" << i << "]: "<< _vector[i] << std::endl;
-		_vector[i] = rand() % 1000;
-	}
+	for (unsigned int i = 0; i < size; i++)
+		addNumber(arr[i]);
 }
+
 std::vector<int> makeVectorNearDiff(std::vector<int> target)
 {
 	std::vector<int>	result;
@@ -60,12 +56,15 @@ std::vector<int> makeVectorNearDiff(std::vector<int> target)
 	}
 	return result;
 }
-
 int		Span::shortestSpan() {
+	if (_vector.size() <= 1)
+		throw invalid();
 	std::vector<int> diffVec = makeVectorNearDiff(_vector);
 	return *(std::min_element(diffVec.begin(), diffVec.end()));
 }
 int		Span::longestSpan() {
+	if (_vector.size() <= 1)
+		throw invalid();
 	std::vector<int> diffVec = makeVectorNearDiff(_vector);
 	return *(std::max_element(diffVec.begin(), diffVec.end()));
 }
