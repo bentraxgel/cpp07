@@ -33,11 +33,11 @@ public:
 	}
 	reverse_iterator reverse_begin()
 	{
-		return std::stack<T>::c.begin();
+		return std::stack<T>::c.rbegin();
 	}
 	reverse_iterator reverse_end()
 	{
-		return std::stack<T>::c.end();
+		return std::stack<T>::c.rend();
 	}
 };
 
