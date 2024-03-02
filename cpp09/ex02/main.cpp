@@ -1,40 +1,48 @@
-#include <vector>
-#include <deque>
-#include <ctime>
-
 #include "PmergeMe.hpp"
 
 int	main(int argc, char* argv[])
 {
-	// if ( argc == 1)
-	// {
-	// 	std::cerr << "Error: invalid input" << std::endl;
-	// 	return -1;
-	// }
-
+	if ( argc == 1)
+	{
+		std::cout << "Error: invalid input" << std::endl;
+		return -1;
+	}
 	// Parsing argument
-	// TOOD: Implement it.
-	std::vector<int> arg;
-
-	// Vector Performance Test
+	try
 	{
-		std::vector<int> vec = {3, 2, 1, 4, 5, 6, 5};
+		PmergeMe	pm(argv);
+		clock_t		startTime;
+		clock_t		finishTime;
 
-		time_t start = time(NULL);
-		Pmerge(vec);
-		time_t end = time(NULL);
-		
-		// print test time (end - start)
-		// TODO: Implement it.
+	// std::vector<int>
+		pm.printToVector("Before");
+
+		startTime = clock();
+		pm.Pmerge(pm.getVector());
+		finishTime = clock();
+
+		double vecTime = static_cast<double>(finishTime - startTime);
+
+		pm.printToVector("After");
+
+	// std::deque<int>
+		startTime = clock();
+		pm.Pmerge(pm.getDeque());
+		finishTime = clock();
+
+		double dqTime = static_cast<double>(finishTime - startTime);
+
+	// print to two containers sorting time
+		std::cout << "Time to process a range of "
+				<< argc - 1 << " elements with std::vector\t: " << vecTime / CLOCKS_PER_SEC * 1000000 << " us" << std::endl;
+		std::cout << "Time to process a range of "
+				<< argc - 1 << " elements with std::deque\t: " << dqTime / CLOCKS_PER_SEC * 1000000 << " us" << std::endl;
+
+		return 0;
 	}
-
-	//  Dequeue Performance Test
+	catch(const std::exception& e)
 	{
-		// TODO: Impelement it.
+		std::cout << e.what() << std::endl;
+		return -1;
 	}
-
-	// Print Test Result
-	// TOOD:
-	
-	return 0;
 }
