@@ -8,6 +8,11 @@
 #include <algorithm>
 #include <sstream>
 
+/** @brief The bitcoin database that processing query.
+ * 
+ *  @warning Input data and arguments are must be valid.
+ * 			 Input data format must be YYYY-MM-DD | [value]
+*/
 class BitcoinExchange
 {
 private:
@@ -19,6 +24,7 @@ public:
 	BitcoinExchange();
 	~BitcoinExchange();
 
+	// Source data file must be valid.
 	void makeDataMap(std::string&);
 
 	bool isCSVFile(std::string);

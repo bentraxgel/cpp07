@@ -2,7 +2,7 @@
 
 int	main(int argc, char* argv[])
 {
-	if ( argc == 1)
+	if (argc == 1 || argc > 10000000)
 	{
 		std::cout << "Error: invalid input" << std::endl;
 		return -1;
@@ -13,7 +13,7 @@ int	main(int argc, char* argv[])
 		PmergeMe	pm(argv);
 		clock_t		startTime;
 		clock_t		finishTime;
-
+		
 	// std::vector<int>
 		pm.printToVector("Before");
 
@@ -24,6 +24,16 @@ int	main(int argc, char* argv[])
 		double vecTime = static_cast<double>(finishTime - startTime);
 
 		pm.printToVector("After");
+
+	 	// Flush the old cache with write into new memory locations,
+		// and using random access to avoding hardware cache prefetcher's predictor unit.
+		{
+			enum { CACHE_LINE_SIZE = 64 };
+			enum { L3_SIZE = 1024 * 1024 * 64 }; //< 64mb
+			char* buf = new char[L3_SIZE];
+			for (int i = 0; i < L3_SIZE; i++)
+				buf[rand() % (L3_SIZE / CACHE_LINE_SIZE)] = 0;
+		}
 
 	// std::deque<int>
 		startTime = clock();

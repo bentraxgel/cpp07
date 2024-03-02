@@ -5,7 +5,7 @@
 #include <iostream>
 #include <vector> 
 #include <deque>
-// #include <iomanip> < DRBUG
+// #include <iomanip> //< DRBUG
 #include <cmath>
 #include <sstream>
 #include <exception>
@@ -20,6 +20,7 @@ public:
 	
 	// DEBUG
 	int		level;
+
 };
 
 class PmergeMe

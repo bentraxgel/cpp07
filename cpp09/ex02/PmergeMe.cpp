@@ -53,10 +53,10 @@ void	PmergeMe::makeVector(char** argv)
 }
 void	PmergeMe::makeDeque()
 {
-	std::vector<int>::iterator iter;
-	for (iter = _vec.begin(); iter != _vec.end(); iter++)
+	_dq.resize(_vec.size());
+	for (size_t i = 0; i < _vec.size(); i++)
 	{
-		_dq.push_back(*iter);
+		_dq[i] = _vec[i];
 	}
 }
 
@@ -144,6 +144,22 @@ void PmergeMe::PmergeImpl(std::vector<int>& source)
 		// std::cout << std::endl << std::endl;
 
 		size_t roundLevel = nodeArr[0]->level;
+
+		if (oddNodeArr.size() != 0)
+		{
+			if (static_cast<int>(roundLevel - 1) == oddNodeArr.back()->level)
+			{
+				Node* newNode = new Node;
+				newNode->left = oddNodeArr.back();
+				newNode->right = NULL;
+				newNode->level = oddNodeArr.back()->level + 1;
+				newNode->value = oddNodeArr.back()->value; 
+				oddNodeArr.pop_back();
+
+				nodeArr.push_back(newNode);
+			}
+		}
+
 		size_t globalShiftCount = 0;
 		size_t lastJacobsNum = 1;
 		size_t jacobsNum;
@@ -188,7 +204,10 @@ void PmergeMe::PmergeImpl(std::vector<int>& source)
 				delete curr;
 
 				// Insert right
-				nodeArr[currIdx] = right;
+				if (right != NULL)
+					nodeArr[currIdx] = right;
+				if (right == NULL)
+					nodeArr.pop_back();
 
 				// Find position to insert the left node.
 				if (left == NULL)
@@ -217,31 +236,6 @@ void PmergeMe::PmergeImpl(std::vector<int>& source)
 					localShiftCount += 1;
 					globalShiftCount += 1;
 				}
-			}
-		}
-
-		if (oddNodeArr.size() != 0)
-		{
-			if (static_cast<int>(roundLevel - 1) == oddNodeArr.back()->level)
-			{
-				size_t l = 0;
-				size_t r = nodeArr.size();
-				while (l < r)
-				{
-					const int mid = (l + r) / 2;
-					
-					if (nodeArr[mid]->value < oddNodeArr.back()->value)
-					{
-						l = mid + 1;
-					}
-					else
-					{
-						r = mid;
-					}
-				}
-				size_t insertPosition = l;
-				nodeArr.insert(nodeArr.begin() + insertPosition, oddNodeArr.back());
-				oddNodeArr.pop_back();
 			}
 		}
 
@@ -326,6 +320,7 @@ void PmergeMe::PmergeImpl(std::deque<int>& source)
 	// Insertion phase
 	while (nodeArr.size() != source.size())
 	{
+		size_t roundLevel = nodeArr[0]->level;
 		// // Print nodes < DEBUG
 		// std::cout << "-------------------round start------------------" << std::endl;
 		// for (size_t i = 0; i < nodeArr.size(); i++)
@@ -334,7 +329,21 @@ void PmergeMe::PmergeImpl(std::deque<int>& source)
 		// }
 		// std::cout << std::endl << std::endl;
 
-		size_t roundLevel = nodeArr[0]->level;
+		if (oddNodeArr.size() != 0)
+		{
+			if (static_cast<int>(roundLevel - 1) == oddNodeArr.back()->level)
+			{
+				Node* newNode = new Node;
+				newNode->left = oddNodeArr.back();
+				newNode->right = NULL;
+				newNode->level = oddNodeArr.back()->level + 1;
+				newNode->value = oddNodeArr.back()->value; 
+				oddNodeArr.pop_back();
+
+				nodeArr.push_back(newNode);
+			}
+		}
+
 		size_t globalShiftCount = 0;
 		size_t lastJacobsNum = 1;
 		size_t jacobsNum;
@@ -379,8 +388,11 @@ void PmergeMe::PmergeImpl(std::deque<int>& source)
 				delete curr;
 
 				// Insert right
-				nodeArr[currIdx] = right;
-
+				if (right != NULL)
+					nodeArr[currIdx] = right;
+				if (right == NULL)
+					nodeArr.pop_back();
+				
 				// Find position to insert the left node.
 				if (left == NULL)
 				{
@@ -408,31 +420,6 @@ void PmergeMe::PmergeImpl(std::deque<int>& source)
 					localShiftCount += 1;
 					globalShiftCount += 1;
 				}
-			}
-		}
-
-		if (oddNodeArr.size() != 0)
-		{
-			if (int(roundLevel - 1) == oddNodeArr.back()->level)
-			{
-				size_t l = 0;
-				size_t r = nodeArr.size();
-				while (l < r)
-				{
-					const int mid = (l + r) / 2;
-					
-					if (nodeArr[mid]->value < oddNodeArr.back()->value)
-					{
-						l = mid + 1;
-					}
-					else
-					{
-						r = mid;
-					}
-				}
-				size_t insertPosition = l;
-				nodeArr.insert(nodeArr.begin() + insertPosition, oddNodeArr.back());
-				oddNodeArr.pop_back();
 			}
 		}
 
